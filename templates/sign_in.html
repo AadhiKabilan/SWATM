@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - SWATM</title>
+    <script src="https://cdn.tailwindcss.com"></script> <!-- Tailwind CSS CDN -->
+</head>
+<body class="bg-gradient-to-r from-green-100 to-blue-100 min-h-screen text-gray-900">
+    <!-- Header Section -->
+    <header class="bg-green-600 text-white py-6">
+        <div class="container mx-auto text-center">
+            <h1 class="text-3xl font-bold">Semester Wise Academics Tracking and Monitoring (SWATM)</h1>
+            <p class="text-xl">Sign In to your Account</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto p-6">
+        <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold mb-6 text-center">Sign In</h2>
+            
+            <!-- Sign In Form -->
+            <form action="/sign_in" method="POST">
+                <!-- User Type Dropdown -->
+                <div class="mb-4">
+                    <label for="usertype" class="block text-gray-700 font-medium">User Type</label>
+                    <select name="usertype" id="usertype" required class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 mt-2">
+                        <option value="staff">Staff</option>
+                        <option value="student">Student</option>
+                    </select>
+                </div>
+                
+                <!-- Username Field -->
+                <div class="mb-4">
+                    <label for="username" class="block text-gray-700 font-medium">Username</label>
+                    <input type="text" name="username" id="username" required class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 mt-2">
+                </div>
+
+                <!-- Password Field -->
+                <div class="mb-6">
+                    <label for="password" class="block text-gray-700 font-medium">Password</label>
+                    <input type="password" name="password" id="password" required class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 mt-2">
+                </div>
+
+                <!-- Student Fields (Reg No) -->
+                <div id="student-fields" class="mb-4" style="display: none;">
+                    <label for="reg_no" class="block text-gray-700 font-medium">Reg No</label>
+                    <input type="text" name="reg_no" id="reg_no" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 mt-2">
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 focus:outline-none">Sign In</button>
+            </form>
+
+            <div class="mt-4 text-center">
+                <p class="text-gray-600">Already have an account? <a href="/" class="text-green-600 hover:underline">Go to Login</a></p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 SWATM. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript to Show/Hide Reg No Field -->
+    <script>
+        document.querySelector('select[name="usertype"]').addEventListener('change', function() {
+            document.getElementById('student-fields').style.display = this.value === 'student' ? 'block' : 'none';
+        });
+    </script>
+
+</body>
+</html>
