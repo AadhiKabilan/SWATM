@@ -95,8 +95,11 @@
                 <button onclick="updateRecord()" class="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 rounded shadow">Update</button>
                 <button onclick="insertAllRecords()" class="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded shadow">Insert All</button>
                 <button onclick="commitData()" class="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded shadow">Commit</button>
+<<<<<<< HEAD
                 <button onclick="insertRecord()" class="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded shadow">Insert</button>
                 <button onclick="fetchRecordn()" class="bg-purple-700 hover:bg-purple-800 text-white px-4 py-2 rounded shadow">Fetch</button>
+=======
+>>>>>>> 13604c984cf719c07773d1b10e9ff2b6f6c1d199
             </div>
             
 
@@ -131,6 +134,7 @@
         let students = []; // Array to store data from buffer_students table
         let currentIndex = -1; // Tracks the current record
 
+<<<<<<< HEAD
         async function insertRecord() {
     const student = {
         reg_no: document.getElementById('reg_no').value.trim(),
@@ -217,6 +221,8 @@ function updateTable() {
 }
 
 
+=======
+>>>>>>> 13604c984cf719c07773d1b10e9ff2b6f6c1d199
         function displayRecord(index) {
                     if (index >= 0 && index < students.length) {
                         const student = students[index];
@@ -246,6 +252,7 @@ function updateTable() {
             document.getElementById('studentForm').reset();
         }
 
+<<<<<<< HEAD
         function addRecord() {
     // Retrieve the selected branch value
     let branchValue = null;
@@ -338,6 +345,32 @@ function updateTable() {
     alert("Student record added successfully!");
 }
 
+=======
+        // Function to add a new record to the array
+        function addRecord() {
+            const student = {
+                reg_no: document.getElementById('reg_no').value.trim(),
+                name: document.getElementById('name').value.trim(),
+                age: document.getElementById('age').value.trim(),
+                branch: document.getElementById('branch').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                semester: document.getElementById('semester').value.trim(),
+            };
+
+            // Validate inputs
+            if (!student.reg_no || !student.name || !student.age || !student.branch || !student.email || !student.phone || !student.semester) {
+                alert("Please fill in all fields.");
+                return;
+            }
+
+            students.push(student); // Add the student to the array
+            currentIndex = students.length - 1; // Update the index
+            populateBufferTable(); // Refresh the buffer table
+            alert("Student record added successfully!");
+            clearForm();
+        }
+>>>>>>> 13604c984cf719c07773d1b10e9ff2b6f6c1d199
 
         // Function to load buffer data from the server
         async function loadBuffer() {
@@ -373,7 +406,11 @@ function updateTable() {
             });
         }
 // Update the current record in the array
+<<<<<<< HEAD
 async function updateRecord() {
+=======
+function updateRecord() {
+>>>>>>> 13604c984cf719c07773d1b10e9ff2b6f6c1d199
     if (currentIndex >= 0 && currentIndex < students.length) {
         // Retrieve the selected branch value
         let branchValue = null;
@@ -402,6 +439,7 @@ async function updateRecord() {
         };
 
         populateBufferTable(); // Refresh the buffer table
+<<<<<<< HEAD
         const response = await fetch('/insert_or_update_buffer', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -413,6 +451,48 @@ async function updateRecord() {
     }
    
 }
+=======
+        alert("Record updated successfully.");
+    } else {
+        alert("No record selected for updating.");
+    }
+}
+function updateRecord() {
+    if (currentIndex >= 0 && currentIndex < students.length) {
+        // Retrieve the selected branch value
+        let branchValue = null;
+        const branchOptions = document.getElementsByName("branch");
+        for (const option of branchOptions) {
+            if (option.checked) {
+                branchValue = option.value;
+                break;
+            }
+        }
+
+        if (!branchValue) {
+            alert("Please select a branch.");
+            return;
+        }
+
+        // Update the record
+        students[currentIndex] = {
+            reg_no: document.getElementById("reg_no").value.trim(),
+            name: document.getElementById("name").value.trim(),
+            age: document.getElementById("age").value.trim(),
+            branch: branchValue,
+            email: document.getElementById("email").value.trim(),
+            phone: document.getElementById("phone").value.trim(),
+            semester: document.getElementById("semester").value.trim(),
+        };
+
+        populateBufferTable(); // Refresh the buffer table
+        alert("Record updated successfully.");
+    } else {
+        alert("No record selected for updating.");
+    }
+}
+
+>>>>>>> 13604c984cf719c07773d1b10e9ff2b6f6c1d199
 
 // Insert all records into buffer_students
 async function insertAllRecords() {

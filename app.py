@@ -428,6 +428,7 @@ def update_password(username, new_password):
     )
     conn.commit()
     conn.close()
+<<<<<<< HEAD
 
 
 
@@ -509,6 +510,8 @@ def insert_or_update_buffer2():
     finally:
         connection.close()
 
+=======
+>>>>>>> 13604c984cf719c07773d1b10e9ff2b6f6c1d199
 @app.route('/logout')
 def logout():
     # Clear the session to log the user out
