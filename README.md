@@ -30,6 +30,23 @@ SWATM is a web-based application developed for the management of student attenda
 1. Clone the repository:
    ```bash
    git clone https://github.com/AadhiKabilan/SWATM.git
+
+2. Navigate to the project directory:
+   ```bash
+   cd SWATM
+
+3. Install the required dependencies: If you're using Python, install the dependencies via
+   ```bash
+   pip install -r requirements.txt
+
+4. Set up the database: Create the database and tables using the SQL scripts provided in sql create table.txt.
+
+5. Run the application:
+   ```bash
+   python app.py
+
+6. Visit http://localhost:5000 in your web browser to start using the application.
+   
 # Screen Shots
 
 Here is the Staff data-entry page:
