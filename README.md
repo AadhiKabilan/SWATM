@@ -19,11 +19,10 @@ SWATM is a web-based application developed for the management of student attenda
 ## Technologies Used
 
 - **Frontend**: HTML, CSS, JavaScript (with templates)
-- **Backend**: Python (Flask/Django), or any relevant backend framework you used
-- **Database**: MySQL/Oracle SQL
+- **Backend**: Python (Flask/Pyodbc), or any relevant backend framework you used
+- **Database**: Oracle SQL
 - **Version Control**: Git, GitHub
 - **Email Service**: SMTP for sending email notifications
-- **Deployment**: (Include any deployment tools if used, e.g., Heroku, Docker)
 
 ## Installation
 
