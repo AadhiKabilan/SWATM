@@ -40,14 +40,17 @@ SWATM is a web-based application developed for the management of student attenda
    pip install -r requirements.txt
 
 4. Set up the database: Create the database and tables using the SQL scripts provided in sql create table.txt.
-
+    ```bash
+    sql create table.txt -> file
 5. Run the application:
    ```bash
    python app.py
 
 6. Visit http://localhost:5000 in your web browser to start using the application.
-   
-# Screen Shots
+   ```bash
+   http://localhost:5000
+
+## Screen Shots
 
 Here is the Staff data-entry page:
 ![Capture Image](images/Capture.JPG)
