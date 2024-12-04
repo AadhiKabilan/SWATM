@@ -30,7 +30,11 @@ SWATM is a web-based application developed for the management of student attenda
 1. Clone the repository:
    ```bash
    git clone https://github.com/AadhiKabilan/SWATM.git
+# Screen Shots
 
+Here is the Staff data-entry page:
 ![Capture Image](images/Capture.JPG)
+Here is the Login page:
 ![Capture Image](images/Capture2.JPG)
+Here is the Student page:
 ![Capture Image](images/Capture3.JPG)
