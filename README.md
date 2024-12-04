@@ -21,6 +21,7 @@ SWATM is a web-based application developed for the management of student attenda
 - **Frontend**: HTML, CSS, JavaScript, Tailwind CSS
 - **Backend**: Python (Flask/Pyodbc), or any relevant backend framework you used
 - **Database**: Oracle SQL
+- **Database Management**: Oracle SQL Developer
 - **Version Control**: Git, GitHub
 - **Email Service**: SMTP for sending email notifications
 
@@ -49,6 +50,16 @@ SWATM is a web-based application developed for the management of student attenda
    ```bash
    http://localhost:5000
 
+##Usage
+
+Students can view their attendance and academic status.
+
+Staff can log in to manage subject data and update attendance and marks.
+
+##Contact
+
+For any questions or feedback, feel free to contact me via email at jaadhikabilan@gmail.com.
+
 ## Screen Shots
 
 Here is the Staff data-entry page:
@@ -57,3 +68,6 @@ Here is the Login page:
 ![Capture Image](images/Capture2.JPG)
 Here is the Student page:
 ![Capture Image](images/Capture3.JPG)
+Here is the buffer_table in OracleSQL Developer:
+![Capture Image](images/Capture4.JPG)
+
