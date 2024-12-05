@@ -50,24 +50,24 @@ SWATM is a web-based application developed for the management of student attenda
    ```bash
    http://localhost:5000
 
-##Usage
+## Usage
 
 Students can view their attendance and academic status.
 
 Staff can log in to manage subject data and update attendance and marks.
 
-##Contact
+## Contact
 
 For any questions or feedback, feel free to contact me via email at jaadhikabilan@gmail.com.
 
 ## Screen Shots
 
-###Here is the Staff data-entry page:
+### Here is the Staff data-entry page:
 ![Capture Image](images/Capture.JPG)
-###Here is the Login page:
+### Here is the Login page:
 ![Capture Image](images/Capture2.JPG)
-###Here is the Student page:
+### Here is the Student page:
 ![Capture Image](images/Capture3.JPG)
-###Here is the buffer_table in OracleSQL Developer:
+### Here is the buffer_table in OracleSQL Developer:
 ![Capture Image](images/Capture4.JPG)
 
