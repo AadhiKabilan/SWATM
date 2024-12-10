@@ -1,5 +1,5 @@
 
-# SWATM (Semester-Wise Academic and Tracking Management)
+# SWATM (Semester-Wise Academic Tracking And Management)
 
 SWATM is a web-based application developed for the management of student attendance and academic tracking. The system helps staff to enter and manage student attendance, while students can view their attendance and academic performance. The application also sends notifications when attendance or grades fall below a specified threshold.
 
