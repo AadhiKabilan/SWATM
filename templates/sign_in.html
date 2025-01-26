@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - SWATM</title>
+    <script src="https://cdn.tailwindcss.com"></script> <!-- Tailwind CSS CDN -->
+    <style>
+         /* Gradient background animation */
+         .animated-background {
+            background: linear-gradient(45deg, #3b82f6, #22c55e, #fbbf24);
+            background-size: 300% 300%;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        /* Header Styling */
+        .header-bg {
+            background: linear-gradient(135deg, #34D399, #10B981);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer Styling */
+        .footer-bg {
+            background: #1f2937;  /* Dark gray background */
+            color: white;  /* White text color */
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);  /* Soft shadow above the footer */
+            position: relative;  /* Normal positioning */
+            padding: 16px 0;  /* Vertical padding for spacing */
+            text-align: center;  /* Center the text */
+            font-size: 14px;  /* Adjust font size */
+            width: 100%;
+        }
+         /* Ensure footer stays at the bottom even if content is small */
+         body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding-bottom: 60px; /* Add padding to the bottom so that the footer is not hidden */
+        }
+        /* Custom Animations */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @keyframes slideUp {
+            0% { transform: translateY(30px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        .slide-up {
+            animation: slideUp 1s ease-in-out;
+        }
+    </style>
+</head>
+<body class="animated-background min-h-screen text-gray-900">
+
+    <!-- Header Section -->
+    <header class="header-bg text-white py-8">
+        <div class="container mx-auto text-center">
+            <h1 class="text-3xl font-bold animate__animated animate__fadeIn">Semester Wise Academics Tracking and Monitoring (SWATM)</h1>
+            <p class="text-xl">Sign In to your Account</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto p-6">
+        <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md slide-up">
+            <h2 class="text-2xl font-bold mb-6 text-center text-green-600">Sign In</h2>
+
+            <!-- Sign In Form -->
+            <form action="/sign_in" method="POST">
+                <!-- User Type Dropdown -->
+                <div class="mb-4">
+                    <label for="usertype" class="block text-gray-700 font-medium">User Type</label>
+                    <select name="usertype" id="usertype" required class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 mt-2">
+                        <option value="staff">Staff</option>
+                        <option value="student">Student</option>
+                    </select>
+                </div>
+
+                <!-- Username Field -->
+                <div class="mb-4">
+                    <label for="username" class="block text-gray-700 font-medium">Username</label>
+                    <input type="text" name="username" id="username" required class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 mt-2">
+                </div>
+
+                <!-- Password Field -->
+                <div class="mb-6">
+                    <label for="password" class="block text-gray-700 font-medium">Password</label>
+                    <input type="password" name="password" id="password" required class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 mt-2">
+                </div>
+
+                <!-- Student Fields (Reg No) -->
+                <div id="student-fields" class="mb-4" style="display: none;">
+                    <label for="reg_no" class="block text-gray-700 font-medium">Reg No</label>
+                    <input type="text" name="reg_no" id="reg_no" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 mt-2">
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 focus:outline-none transform hover:scale-105 transition duration-300 ease-in-out">Sign In</button>
+            </form>
+
+            <div class="mt-4 text-center">
+                <p class="text-gray-600">Already have an account? <a href="/" class="text-green-600 hover:underline">Go to Login</a></p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer-bg">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 SWATM. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript to Show/Hide Reg No Field -->
+    <script>
+        document.querySelector('select[name="usertype"]').addEventListener('change', function() {
+            document.getElementById('student-fields').style.display = this.value === 'student' ? 'block' : 'none';
+        });
+    </script>
+
+</body>
+</html>

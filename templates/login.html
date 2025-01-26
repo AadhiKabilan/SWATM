@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - SWATM</title>
+    <script src="https://cdn.tailwindcss.com"></script> <!-- Tailwind CSS CDN -->
+    <style>
+        /* Custom animation for background */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        /* Gradient background animation */
+        .animated-background {
+            background: linear-gradient(45deg, #3b82f6, #22c55e, #fbbf24);
+            background-size: 300% 300%;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        /* Header Styling */
+        .header-bg {
+            background: linear-gradient(135deg, #34D399, #10B981);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer Styling */
+        .footer-bg {
+            background: #1f2937;  /* Dark gray background */
+            color: white;  /* White text color */
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);  /* Soft shadow above the footer */
+            position: relative;  /* Normal positioning */
+            padding: 16px 0;  /* Vertical padding for spacing */
+            text-align: center;  /* Center the text */
+            font-size: 14px;  /* Adjust font size */
+            width: 100%;
+        }
+
+        /* Ensure footer stays at the bottom even if content is small */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding-bottom: 60px; /* Add padding to the bottom so that the footer is not hidden */
+        }
+
+        /* Ensure content doesn't overlap the footer */
+        main {
+            flex: 1;  /* Make the main section flexible to push the footer down */
+        }
+
+        /* For larger screens, you can adjust the font size */
+        @media screen and (min-width: 768px) {
+            .footer-bg {
+                font-size: 16px;  /* Increase font size on larger screens */
+            }
+
+            .header-text {
+                font-size: 2.5rem; /* Adjust header text size on larger screens */
+            }
+
+            .login-form input, .login-form button {
+                padding: 16px;
+            }
+        }
+
+        .header-text {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body class="animated-background min-h-screen text-gray-900">
+
+    <!-- Header Section -->
+    <header class="header-bg text-white py-8">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl font-extrabold tracking-tight header-text">Semester Wise Academics Tracking and Monitoring (SWATM)</h1>
+            <p class="text-xl mt-2">Your Educational Tracking System</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto p-6">
+        <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300">
+            <h2 class="text-3xl font-bold mb-6 text-center text-green-600">Login</h2>
+            
+            <!-- Login Form -->
+            <form action="/login" method="POST" class="space-y-6">
+                <div class="mb-4">
+                    <label for="username" class="block text-gray-700 font-medium">Username</label>
+                    <input type="text" name="username" id="username" required class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 mt-2 transition-all duration-300 transform hover:scale-105">
+                </div>
+                <div class="mb-6">
+                    <label for="password" class="block text-gray-700 font-medium">Password</label>
+                    <input type="password" name="password" id="password" required class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 mt-2 transition-all duration-300 transform hover:scale-105">
+                </div>
+                <button type="submit" class="w-full bg-green-500 text-white py-3 rounded-lg hover:bg-green-600 focus:outline-none focus:ring-4 focus:ring-green-400 transition-all duration-300 transform hover:scale-105">
+                    Login
+                </button>
+                
+            </form>
+            
+            <!-- Registration Link -->
+            <div class="mt-4 text-center">
+                <p class="text-gray-600">Don't have an account? <a href="/sign_in" class="text-green-600 hover:underline">Register here</a></p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer-bg">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 SWATM. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

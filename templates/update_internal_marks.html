@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Internal Marks</title>
+    <style>
+        /* Body and Background */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(120deg, #84fab0, #8fd3f4);
+            animation: gradientMove 8s infinite alternate;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        /* Header */
+        h1 {
+            text-align: center;
+            color: #00521b;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Form Container */
+        .form-container {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 900px;
+        }
+
+        /* Form and Inputs */
+        form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #444;
+        }
+
+        .form-group input[type="text"] {
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-group input[type="text"]:focus {
+            border-color: #84fab0;
+            box-shadow: 0 0 8px rgba(132, 250, 176, 0.8);
+            outline: none;
+        }
+
+        /* Button */
+        button {
+            grid-column: span 3;
+            background: linear-gradient(90deg, #84fab0, #8fd3f4);
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background: linear-gradient(90deg, #8fd3f4, #84fab0);
+            transform: translateY(-3px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .form-container {
+                padding: 15px;
+            }
+
+            button {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1 class="text-4xl  font-bold animate__animated animate__fadeIn text-blue-600">Update Internal Marks</h1>
+        <form method="POST">
+            {% for subject in subjects %}
+                <div class="form-group">
+                    <label for="test1_{{ subject[0] }}">Test 1 ({{ subject[1] }}):</label>
+                    <input type="text" name="test1_{{ subject[0] }}" id="test1_{{ subject[0] }}" 
+                    value="{{ marks[subject[0]].test1 if marks[subject[0]].test1 else '' }}" required>
+
+                    <label for="test2_{{ subject[0] }}">Test 2 ({{ subject[1] }}):</label>
+                    <input type="text" name="test2_{{ subject[0] }}" id="test2_{{ subject[0] }}" 
+                    value="{{ marks[subject[0]].test2 if marks[subject[0]].test2 else '' }}" required>
+
+                    <label for="test3_{{ subject[0] }}">Test 3 ({{ subject[1] }}):</label>
+                    <input type="text" name="test3_{{ subject[0] }}" id="test3_{{ subject[0] }}" 
+                    value="{{ marks[subject[0]].test3 if marks[subject[0]].test3 else '' }}" required>
+                </div>
+            {% endfor %}
+            <button type="submit">Update Marks</button>
+        </form>
+    </div>
+</body>
+</html>

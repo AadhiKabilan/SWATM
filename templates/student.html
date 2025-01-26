@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script> <!-- Tailwind CSS CDN -->
+    <style>
+         /* Gradient background animation */
+         .animated-background {
+            background: linear-gradient(45deg, #3b82f6, #22c55e, #fbbf24);
+            background-size: 300% 300%;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        /* Header Styling */
+        .header-bg {
+            background: linear-gradient(135deg, #34D399, #10B981);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer Styling */
+        .footer-bg {
+            background: #1f2937;  /* Dark gray background */
+            color: white;  /* White text color */
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);  /* Soft shadow above the footer */
+            position: relative;  /* Normal positioning */
+            padding: 16px 0;  /* Vertical padding for spacing */
+            text-align: center;  /* Center the text */
+            font-size: 14px;  /* Adjust font size */
+            width: 100%;
+        }
+         /* Ensure footer stays at the bottom even if content is small */
+         body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding-bottom: 60px; /* Add padding to the bottom so that the footer is not hidden */
+        }
+        /* Custom animation for fade-in effect */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        /* Custom animation for scale-up effect */
+        @keyframes scaleUp {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        /* Animation on page load */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+        /* Animation for the action buttons */
+        .scale-up {
+            animation: scaleUp 0.5s ease-out forwards;
+        }
+        /* Custom gradient background */
+        .bg-gradient-custom {
+            background: linear-gradient(135deg, #34D399, #10B981);
+        }
+        /* Hover animation for card */
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+        /* Footer fixed at the bottom */
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 16px;
+            background-color: #1f2937;
+            color: white;
+        }
+        /* Responsive layout */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .scale-up {
+                animation: none;
+            }
+        }
+    </style>
+</head>
+<body class="animated-background min-h-screen text-gray-900">
+
+    <!-- Header Section -->
+    <header class="header-bg text-white py-8">
+        <div class="container mx-auto text-center">
+            
+            <h1 class="text-4xl font-bold animate__animated animate__fadeIn">Semester Wise Academics Tracking and Monitoring (SWATM)</h1>
+            <p class="text-xl">Student Dashboard</p>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main class="container mx-auto p-6 max-w-3xl fade-in">
+
+        <!-- Welcome Section -->
+        <div class="bg-white p-8 rounded-lg shadow-lg transform card transition-all duration-300">
+            <h2 class="text-2xl font-semibold mb-4 text-center text-green-600">Welcome, {{ student[3] }}</h2>
+            <p class="text-lg mb-4 text-center">Your Student Details:</p>
+            
+            <ul class="space-y-3">
+                <li class="flex justify-between text-sm"><strong>Reg No:</strong> <span>{{ student[0] }}</span></li>
+                <li class="flex justify-between text-sm"><strong>Name:</strong> <span>{{ student[3] }}</span></li>
+                <li class="flex justify-between text-sm"><strong>Age:</strong> <span>{{ student[4] }}</span></li>
+                <li class="flex justify-between text-sm"><strong>Branch:</strong> <span>{{ student[5] }}</span></li>
+                <li class="flex justify-between text-sm"><strong>Email:</strong> <span>{{ student[6] }}</span></li>
+                <li class="flex justify-between text-sm"><strong>Phone:</strong> <span>{{ student[7] }}</span></li>
+                <li class="flex justify-between text-sm"><strong>Semester:</strong> <span>{{ student[8] }}</span></li>
+            </ul>
+        </div>
+
+        <!-- Action Buttons Section -->
+        <div class="mt-6 flex justify-center gap-6 ">
+            <a href="/student_edit" class="bg-yellow-500 text-white py-2 px-8 rounded-lg shadow-md hover:bg-yellow-600 hover:shadow-xl transition-all duration-300 transform scale-up">
+                Update Details
+            </a>
+            <a href="/logout" class="bg-red-500 text-white py-4 px-8 rounded-lg shadow-md hover:bg-red-600 hover:shadow-xl transition-all duration-300 transform scale-up">
+                Logout
+            </a>
+            <a href="/change_password" class="bg-blue-500 text-white py-2 px-6 rounded-lg shadow-md hover:bg-blue-600 hover:shadow-xl transition-all duration-300 transform scale-up">
+                Change Password
+            </a>
+            <a href="/update_internal_marks" class="bg-green-500 text-white py-2 px-14 rounded-lg shadow-md hover:bg-green-600 hover:shadow-xl transition-all duration-300 transform scale-up">
+                Update Internal Marks
+            </a>
+        </div>
+        
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer-bg">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 Student Portal. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

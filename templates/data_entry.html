@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Data Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Add a smooth animation effect for the background gradient */
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        body {
+            background: linear-gradient(45deg, #34D399, #10B981);
+            background-size: 400% 400%;
+            animation: gradientMove 10s ease infinite;
+        }
+
+        /* Apply animations for buttons */
+        .btn-animate {
+            transition: all 0.3s ease;
+        }
+
+        .btn-animate:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Add smooth focus ring for inputs */
+        .input-focus:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 1);
+        }
+    </style>
+</head>
+<body class="min-h-screen text-gray-900">
+    <div class="container mx-auto p-6">
+        <!-- Header Section -->
+        <header class="bg-green-600 text-white py-6 rounded-lg shadow-md mb-6">
+            <h1 class="text-center text-4xl font-extrabold animate__animated animate__fadeInUp">Student Data Management</h1>
+        </header>
+
+        <!-- Main Content -->
+        <main class="bg-white p-8 rounded-lg shadow-lg animate__animated animate__fadeInUp">
+            <!-- Form Section -->
+            <form id="studentForm" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <div>
+                    <label for="reg_no" class="block text-sm font-semibold">Reg No:</label>
+                    <input type="text" id="reg_no" class="w-full p-3 border rounded-lg input-focus focus:ring-2 focus:ring-blue-400">
+                </div>
+                <div>
+                    <label for="name" class="block text-sm font-semibold">Name:</label>
+                    <input type="text" id="name" class="w-full p-3 border rounded-lg input-focus focus:ring-2 focus:ring-blue-400">
+                </div>
+                <div>
+                    <label for="age" class="block text-sm font-semibold">Age:</label>
+                    <input type="number" id="age" class="w-full p-3 border rounded-lg input-focus focus:ring-2 focus:ring-blue-400">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold mb-2">Branch:</label>
+                    <div class="flex flex-wrap gap-4">
+                        <label class="flex items-center gap-2">
+                            <input type="radio" name="branch" value="IT" class="focus:ring-2 focus:ring-blue-400">
+                            IT
+                        </label>
+                        <label class="flex items-center gap-2">
+                            <input type="radio" name="branch" value="CSE" class="focus:ring-2 focus:ring-blue-400">
+                            CSE
+                        </label>
+                        <label class="flex items-center gap-2">
+                            <input type="radio" name="branch" value="ECE" class="focus:ring-2 focus:ring-blue-400">
+                            ECE
+                        </label>
+                        <label class="flex items-center gap-2">
+                            <input type="radio" name="branch" value="ME" class="focus:ring-2 focus:ring-blue-400">
+                            ME
+                        </label>
+                        <label class="flex items-center gap-2">
+                            <input type="radio" name="branch" value="MEC" class="focus:ring-2 focus:ring-blue-400">
+                            MEC
+                        </label>
+                        <label class="flex items-center gap-2">
+                            <input type="radio" name="branch" value="EIE" class="focus:ring-2 focus:ring-blue-400">
+                            EIE
+                        </label>
+                        <label class="flex items-center gap-2">
+                            <input type="radio" name="branch" value="EEE" class="focus:ring-2 focus:ring-blue-400">
+                            EEE
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-semibold">Email:</label>
+                    <input type="email" id="email" class="w-full p-3 border rounded-lg input-focus focus:ring-2 focus:ring-blue-400">
+                </div>
+                <div>
+                    <label for="phone" class="block text-sm font-semibold">Phone:</label>
+                    <input type="text" id="phone" class="w-full p-3 border rounded-lg input-focus focus:ring-2 focus:ring-blue-400">
+                </div>
+                <div>
+                    <label for="semester" class="block text-sm font-semibold">Semester:</label>
+                    <select id="semester" class="w-full p-3 border rounded-lg input-focus focus:ring-2 focus:ring-blue-400">
+                        <option value="1">First</option>
+                        <option value="2">Second</option>
+                        <option value="3">Third</option>
+                        <option value="4">Fourth</option>
+                        <option value="5">Fifth</option>
+                        <option value="6">Sixth</option>
+                        <option value="7">Seventh</option>
+                    </select>
+                </div>
+            </form>
+
+            <!-- Button Section -->
+            <div class="mt-8 grid gap-4 md:grid-cols-3 lg:grid-cols-5">
+                <button onclick="previousRecord()" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg btn-animate">Previous</button>
+                <button onclick="nextRecord()" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg btn-animate">Next</button>
+                <button onclick="addRecord()" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg btn-animate">Add</button>
+                <button onclick="clearForm()" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg btn-animate">Clear</button>
+                <button onclick="deleteRecord()" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg btn-animate">Delete</button>
+                <button onclick="loadBuffer()" class="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg btn-animate">Load Previous Buffer</button>
+                <button onclick="updateRecord()" class="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 rounded-lg btn-animate">Update</button>
+                <button onclick="insertAllRecords()" class="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-lg btn-animate">Save</button>
+                <button onclick="commitData()" class="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded-lg btn-animate">Commit</button>
+
+                <button onclick="insertRecord()" class="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded-lg btn-animate">Insert</button>
+                <button onclick="fetchRecordn()" class="bg-purple-700 hover:bg-purple-800 text-white px-4 py-2 rounded-lg btn-animate">Fetch</button>
+            </div>
+
+            <!-- Display Loaded Data -->
+            <div class="mt-10">
+                <h2 class="text-xl font-bold mb-4 text-center animate__animated animate__fadeInUp">Buffer Table Data</h2>
+                <div class="overflow-x-auto">
+                    <table id="bufferTable" class="w-full table-auto border-collapse border border-gray-300">
+                        <thead>
+                            <tr class="bg-gray-200">
+                                <th class="border px-4 py-2 text-sm font-semibold">Reg No</th>
+                                <th class="border px-4 py-2 text-sm font-semibold">Name</th>
+                                <th class="border px-4 py-2 text-sm font-semibold">Age</th>
+                                <th class="border px-4 py-2 text-sm font-semibold">Branch</th>
+                                <th class="border px-4 py-2 text-sm font-semibold">Email</th>
+                                <th class="border px-4 py-2 text-sm font-semibold">Phone</th>
+                                <th class="border px-4 py-2 text-sm font-semibold">Semester</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bufferData"></tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+
+    <script>
+        let deletedRecords = []; // Array to store deleted record REG_NO
+
+        let students = []; // Array to store data from buffer_students table
+        let currentIndex = -1; // Tracks the current record
+
+
+        async function insertRecord() {
+    const student = {
+        reg_no: document.getElementById('reg_no').value.trim(),
+        name: document.getElementById('name').value.trim(),
+        age: document.getElementById('age').value.trim(),
+        branch: document.querySelector('input[name="branch"]:checked')?.value || '',
+        email: document.getElementById('email').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        semester: document.getElementById('semester').value.trim(),
+    };
+
+    // Validation
+    if (!student.reg_no || !student.name || !student.age || !student.branch) {
+        alert("Please fill in all required fields!");
+        return;
+    }
+
+    try {
+        const response = await fetch('/insert_record', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(student),
+        });
+
+        const result = await response.text();
+        alert(result);
+    } catch (error) {
+        console.error("Error inserting record:", error);
+        alert("Failed to insert record.");
+    }
+}
+async function fetchRecordn() {
+    const regNo = document.getElementById('reg_no').value.trim();
+
+    if (!regNo) {
+        alert("Please enter a registration number!");
+        return;
+    }
+
+    try {
+        // Make the GET request to fetch the record
+        const response = await fetch(`/fetch_recordn?reg_no=${encodeURIComponent(regNo)}`);
+        const record = await response.json();
+
+        if (record.error) {
+            alert("Record not found!");
+            return;
+        }
+
+        // Add the record to the JavaScript array
+        students.push(record);
+
+        // Update the table
+        updateTable();
+
+        alert("Record fetched and added to the table!");
+    } catch (error) {
+        console.error("Error fetching record:", error);
+        alert("Failed to fetch record.");
+    }
+}
+
+
+function updateTable() {
+    const tableBody = document.querySelector("#bufferTable tbody"); // Correct table ID
+
+    // Clear the table
+    tableBody.innerHTML = '';
+
+    // Populate the table with updated records
+    students.forEach((student) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td class="border px-4 py-2">${student.reg_no}</td>
+            <td class="border px-4 py-2">${student.name}</td>
+            <td class="border px-4 py-2">${student.age}</td>
+            <td class="border px-4 py-2">${student.branch}</td>
+            <td class="border px-4 py-2">${student.email}</td>
+            <td class="border px-4 py-2">${student.phone}</td>
+            <td class="border px-4 py-2">${student.semester}</td>
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
+
+
+        function displayRecord(index) {
+                    if (index >= 0 && index < students.length) {
+                        const student = students[index];
+                        document.getElementById('reg_no').value = student.reg_no;
+                        document.getElementById('name').value = student.name;
+                        document.getElementById('age').value = student.age;
+                        
+                        // Correctly set the branch radio button
+                        const branchRadios = document.getElementsByName('branch');
+                        for (let radio of branchRadios) {
+                            if (radio.value === student.branch) {
+                                radio.checked = true;
+                                break;
+                            }
+                        }
+                        
+                        document.getElementById('email').value = student.email;
+                        document.getElementById('phone').value = student.phone;
+                        document.getElementById('semester').value = student.semester;
+                    } else {
+                        clearForm();
+                    }
+                }
+
+        // Function to clear the form fields
+        function clearForm() {
+            document.getElementById('studentForm').reset();
+        }
+
+
+        function addRecord() {
+    // Retrieve the selected branch value
+    let branchValue = null;
+    const branchOptions = document.getElementsByName("branch");
+    for (const option of branchOptions) {
+        if (option.checked) {
+            branchValue = option.value;
+            break;
+        }
+    }
+
+    // Collect form data
+    const student = {
+        reg_no: document.getElementById('reg_no').value.trim(),
+        name: document.getElementById('name').value.trim(),
+        age: document.getElementById('age').value.trim(),
+        branch: branchValue || '', // Use empty string if no branch selected
+        email: document.getElementById('email').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        semester: document.getElementById('semester').value.trim(),
+    };
+
+    // Comprehensive validation
+    const requiredFields = [
+        { field: 'reg_no', message: 'Registration Number' },
+        { field: 'name', message: 'Name' },
+        { field: 'age', message: 'Age' },
+        { field: 'branch', message: 'Branch' },
+        { field: 'email', message: 'Email' },
+        { field: 'phone', message: 'Phone Number' },
+        { field: 'semester', message: 'Semester' }
+    ];
+
+    // Check for empty fields
+    const emptyFields = requiredFields.filter(f => 
+        !student[f.field] || student[f.field].length === 0
+    );
+
+    if (emptyFields.length > 0) {
+        alert("Please fill in the following fields:\n" + 
+            emptyFields.map(f => f.message).join(', '));
+        return;
+    }
+
+    // Validate registration number (assuming it should be numeric)
+    if (!/^\d+$/.test(student.reg_no)) {
+        alert("Registration Number must be a numeric value.");
+        return;
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(student.email)) {
+        alert("Please enter a valid email address.");
+        return;
+    }
+
+    // Validate phone number (assuming 10 digit number)
+    if (!/^\d{10}$/.test(student.phone)) {
+        alert("Phone number must be 10 digits long.");
+        return;
+    }
+
+    // Check for duplicate registration number
+    const isDuplicate = students.some(
+        existingStudent => existingStudent.reg_no === student.reg_no
+    );
+
+    if (isDuplicate) {
+        alert("A record with this Registration Number already exists.");
+        return;
+    }
+
+    // Add the student to the array
+    students.push(student);
+    
+    // Update current index to the newly added record
+    currentIndex = students.length - 1;
+    
+    // Refresh the buffer table
+    populateBufferTable();
+    
+    // Display the newly added record
+    displayRecord(currentIndex);
+    
+    // Optional: Clear the form after adding
+    clearForm();
+    
+    // Provide feedback
+    alert("Student record added successfully!");
+}
+
+
+        // Function to add a new record to the array
+
+
+
+       // Function to load buffer data from the server
+async function loadBuffer() {
+    const response = await fetch('/load_data', { method: 'POST' });
+    if (response.ok) {
+        const dataResponse = await fetch('/fetch_buffer'); // Endpoint to fetch buffer data
+        students = await dataResponse.json(); // Load data into array
+        currentIndex = students.length > 0 ? 0 : -1;
+        populateBufferTable(); // Populate the table
+        alert("Buffer data loaded successfully!");
+        if (students.length > 0) displayRecord(currentIndex); // Display the first record
+    } else {
+        alert("Failed to load buffer data.");
+    }
+}
+
+// Function to populate the buffer table
+function populateBufferTable() {
+    const tableBody = document.querySelector("#bufferTable tbody");
+    tableBody.innerHTML = ""; // Clear existing rows
+    students.forEach((student) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td class="border px-4 py-2">${student.reg_no}</td>
+            <td class="border px-4 py-2">${student.name}</td>
+            <td class="border px-4 py-2">${student.age}</td>
+            <td class="border px-4 py-2">${student.branch}</td>
+            <td class="border px-4 py-2">${student.email}</td>
+            <td class="border px-4 py-2">${student.phone}</td>
+            <td class="border px-4 py-2">${student.semester}</td>
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
+// Update the current record in the array
+
+async function updateRecord() {
+    if (currentIndex >= 0 && currentIndex < students.length) {
+        // Retrieve the selected branch value
+        let branchValue = null;
+        const branchOptions = document.getElementsByName("branch");
+        for (const option of branchOptions) {
+            if (option.checked) {
+                branchValue = option.value;
+                break;
+            }
+        }
+
+        if (!branchValue) {
+            alert("Please select a branch.");
+            return;
+        }
+
+        // Update the record
+        const updatedStudent = {
+            reg_no: document.getElementById("reg_no").value.trim(),
+            name: document.getElementById("name").value.trim(),
+            age: document.getElementById("age").value.trim(),
+            branch: branchValue,
+            email: document.getElementById("email").value.trim(),
+            phone: document.getElementById("phone").value.trim(),
+            semester: document.getElementById("semester").value.trim(),
+        };
+
+        students[currentIndex] = updatedStudent; // Update the selected student record
+
+        populateBufferTable(); // Refresh the buffer table
+
+        // Send only the updated student record to the backend
+        const response = await fetch('/insert_or_update_buffer', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify([updatedStudent]), // Send as array
+        });
+
+        if (response.ok) {
+            alert("Record successfully updated.");
+        } else {
+            alert("Failed to update record.");
+        }
+    } else {
+        alert("No record selected for updating.");
+    }
+}
+
+
+      /*
+function updateRecord() {
+    if (currentIndex >= 0 && currentIndex < students.length) {
+        // Retrieve the selected branch value
+        let branchValue = null;
+        const branchOptions = document.getElementsByName("branch");
+        for (const option of branchOptions) {
+            if (option.checked) {
+                branchValue = option.value;
+                break;
+            }
+        }
+
+        if (!branchValue) {
+            alert("Please select a branch.");
+            return;
+        }
+
+        // Update the record
+        students[currentIndex] = {
+            reg_no: document.getElementById("reg_no").value.trim(),
+            name: document.getElementById("name").value.trim(),
+            age: document.getElementById("age").value.trim(),
+            branch: branchValue,
+            email: document.getElementById("email").value.trim(),
+            phone: document.getElementById("phone").value.trim(),
+            semester: document.getElementById("semester").value.trim(),
+        };
+
+        populateBufferTable(); // Refresh the buffer table
+        alert("Record updated successfully.");
+    } else {
+        alert("No record selected for updating.");
+    }
+}
+*/
+
+
+// Insert all records into buffer_students
+async function insertAllRecords() {
+    // Check if students array is not empty and has valid data
+    const validStudents = students.filter(student => {
+        return student.reg_no && student.name && student.age && student.branch && student.email && student.phone && student.semester;
+    });
+
+    if (validStudents.length === 0) {
+        alert("No valid student records to save.");
+        return;
+    }
+
+    const response = await fetch('/insert_or_update_buffer', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(validStudents),  // Only send valid students
+    });
+
+    const responseText = await response.text();
+    alert(responseText);
+}
+
+
+// Commit all buffer records to students_s
+async function commitData() {
+    const response = await fetch('/commit_data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            deleted_records: deletedRecords, // Send deleted records
+        }),
+    });
+
+    alert(await response.text());
+    // Clear the deleted records array after committing
+    deletedRecords = [];
+}
+
+        // Navigate to the previous record
+        function previousRecord() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                displayRecord(currentIndex);
+            } else {
+                alert("No previous records.");
+            }
+        }
+
+        // Navigate to the next record
+        function nextRecord() {
+            if (currentIndex < students.length - 1) {
+                currentIndex++;
+                displayRecord(currentIndex);
+            } else {
+                alert("No more records.");
+            }
+        }
+
+        async function deleteRecord() {
+    if (currentIndex >= 0 && currentIndex < students.length) {
+        const studentToDelete = students[currentIndex];
+        
+        try {
+            // First, attempt to delete from the database buffer table
+            const deleteResponse = await fetch('/delete_record', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ reg_no: studentToDelete.reg_no })
+            });
+
+            if (!deleteResponse.ok) {
+                throw new Error('Failed to delete record from buffer');
+            }
+
+            // Remove the record from the local students array
+            students.splice(currentIndex, 1);
+            
+            // Add to deletedRecords for main students table deletion during commit
+            deletedRecords.push(studentToDelete.reg_no);
+
+            // Refresh the buffer table
+            populateBufferTable();
+
+            // Adjust the index after deletion
+            if (students.length === 0) {
+                currentIndex = -1;
+                clearForm();
+                alert("Record deleted successfully. No more records.");
+            } else if (currentIndex >= students.length) {
+                currentIndex = students.length - 1;
+                displayRecord(currentIndex);
+                alert("Record deleted successfully. Showing last record.");
+            } else {
+                displayRecord(currentIndex);
+                alert("Record deleted successfully.");
+            }
+        } catch (error) {
+            console.error('Deletion error:', error);
+            alert('Failed to delete record: ' + error.message);
+        }
+    } else {
+        alert("No record to delete.");
+    }
+}
+
+document.getElementById('reg_no').addEventListener('input', async function () {
+    const regNo = this.value.trim();
+
+    if (regNo) {
+        try {
+            // Make an API call to the backend
+            const response = await fetch(`/fetch_recordn?reg_no=${encodeURIComponent(regNo)}`);
+            const data = await response.json();
+
+            if (data.error) {
+                // Clear the form fields if no data is found
+                document.getElementById('name').value = '';
+                document.getElementById('age').value = '';
+                document.getElementById('email').value = '';
+                document.getElementById('phone').value = '';
+                document.querySelectorAll('input[name="branch"]').forEach(input => input.checked = false);
+                document.getElementById('semester').value = '';
+                
+            } else {
+                // Populate the form fields with fetched data
+                document.getElementById('name').value = data.name;
+                document.getElementById('age').value = data.age;
+                document.getElementById('email').value = data.email;
+                document.getElementById('phone').value = data.phone;
+                document.querySelectorAll('input[name="branch"]').forEach(input => {
+                    input.checked = input.value === data.branch;
+                });
+                document.getElementById('semester').value = data.semester;
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            alert('Failed to fetch data.');
+        }
+    } else {
+        // Clear fields if registration number is cleared
+        document.getElementById('name').value = '';
+        document.getElementById('age').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('phone').value = '';
+        document.querySelectorAll('input[name="branch"]').forEach(input => input.checked = false);
+        document.getElementById('semester').value = '';
+    }
+});
+
+    </script>
+</body>
+</html>

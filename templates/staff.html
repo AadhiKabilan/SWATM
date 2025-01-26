@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Dashboard - SWATM</title>
+    <script src="https://cdn.tailwindcss.com"></script> <!-- Tailwind CSS CDN -->
+    <style>
+        
+          /* Animated Gradient Background */
+          .animated-background {
+            background: linear-gradient(45deg, #34D399, #3b82f6, #10B981);
+            background-size: 300% 300%;
+            animation: gradientShift 5s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Header Styling */
+        .header-bg {
+            background: linear-gradient(135deg, #34D399, #10B981);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer Styling */
+        .footer-bg {
+            background: #1f2937;  /* Dark gray background */
+            color: white;  /* White text color */
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);  /* Soft shadow above the footer */
+            position: relative;  /* Normal positioning */
+            padding: 16px 0;  /* Vertical padding for spacing */
+            text-align: center;  /* Center the text */
+            font-size: 14px;  /* Adjust font size */
+            width: 100%;
+        }
+
+        /* Ensure footer stays at the bottom even if content is small */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding-bottom: 60px; /* Add padding to the bottom so that the footer is not hidden */
+        }
+
+        /* Custom animation for fade-in effect */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Custom animation for scale-up effect */
+        @keyframes scaleUp {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Animation on page load */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        /* Animation for the action buttons */
+        .scale-up {
+            animation: scaleUp 0.5s ease-out forwards;
+        }
+
+        /* Custom gradient background */
+        .bg-gradient-custom {
+            background: linear-gradient(135deg, #34D399, #10B981);
+        }
+
+        /* Hover animation for card */
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Footer fixed at the bottom */
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 16px;
+            background-color: #1f2937;
+            color: white;
+        }
+
+        /* Responsive layout */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .scale-up {
+                animation: none;
+            }
+        }
+
+        /* Button hover animation */
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-focus {
+            transition: background-color 0.3s ease;
+        }
+    </style>
+</head>
+<body class="animated-background min-h-screen text-gray-900">
+
+    <!-- Header Section -->
+    <header class="header-bg text-white py-8">
+        <div class="container mx-auto text-center">
+            <h1 class="text-3xl font-bold">Semester Wise Academics Tracking and Monitoring (SWATM)</h1>
+            <p class="text-xl">Staff Dashboard</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto p-6">
+        <!-- Table Section -->
+        <div class="overflow-x-auto bg-white p-6 rounded-lg shadow-md">
+            <table class="w-full table-auto border-collapse border border-gray-300">
+                <thead class="bg-gray-200">
+                    <tr>
+                        <th class="px-4 py-2 border text-left">Reg No</th>
+                        <th class="px-4 py-2 border text-left">Name</th>
+                        <th class="px-4 py-2 border text-left">Age</th>
+                        <th class="px-4 py-2 border text-left">Branch</th>
+                        <th class="px-4 py-2 border text-left">Email</th>
+                        <th class="px-4 py-2 border text-left">Phone</th>
+                        <th class="px-4 py-2 border text-left">Semester</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-4 py-2 border">{{ student[0] }}</td>
+                        <td class="px-4 py-2 border">{{ student[1] }}</td>
+                        <td class="px-4 py-2 border">{{ student[2] }}</td>
+                        <td class="px-4 py-2 border">{{ student[3] }}</td>
+                        <td class="px-4 py-2 border">{{ student[4] }}</td>
+                        <td class="px-4 py-2 border">{{ student[5] }}</td>
+                        <td class="px-4 py-2 border">{{ student[6] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Data Entry Link -->
+        <div class="mt-6 text-center bg-gradient-to-r from-[#a2e8b5] to-[#c3f7d1] p-6 rounded-lg shadow-lg">
+            <a href="/data_entry" class="btn bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 focus:outline-none btn-focus">Go to Data Entry Page</a>
+            <a href="/change_password" class="btn bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 focus:outline-none btn-focus hover:underline">Change Password</a>
+            <a href="/logout" class="btn bg-green-500 text-white py-2 px-6 rounded hover:bg-red-600 btn-focus">Logout</a>
+            <a href="/view_marks" class="btn bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 focus:outline-none btn-focus">View Marks</a>
+        </div>
+        
+        
+        
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer-bg">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 SWATM. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

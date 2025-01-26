@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Internal Marks</title>
+    <script src="https://cdn.tailwindcss.com"></script> <!-- Tailwind CSS CDN -->
+</head>
+<body class="min-h-screen bg-gradient-to-r from-[#a2e8b5] to-[#c3f7d1]">
+
+    <!-- Header Section -->
+    <header class="bg-gradient-to-r from-[#34D399] to-[#10B981] text-white py-8">
+        <div class="container mx-auto text-center">
+            <h1 class="text-3xl font-bold">View Internal Marks - SWATM</h1>
+            <p class="text-xl">Staff Dashboard</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto p-6">
+        <!-- Select Student Form -->
+        <form method="POST" class="mb-6">
+            <label for="student_reg_no" class="block text-xl font-bold mb-2">Select Student:</label>
+            <select name="student_reg_no" id="student_reg_no" class="w-full p-3 border border-gray-300 rounded-lg mb-4">
+                <option value="">Select a Student</option>
+                {% for student in students %}
+                <option value="{{ student[0] }}" {% if selected_student == student[0] %}selected{% endif %}>{{ student[0] }} - {{ student[1] }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="bg-green-500 text-white px-6 py-2 rounded hover:bg-green-700">View Marks</button>
+        </form>
+
+        {% if marks %}
+        <div class="overflow-x-auto bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold mb-4">Marks for Student: {{ selected_student }}</h2>
+            <table class="w-full table-auto border-collapse border border-gray-300">
+                <thead class="bg-gray-200">
+                    <tr>
+                        <th class="px-4 py-2 border text-left">Subject</th>
+                        <th class="px-4 py-2 border text-left">Test 1 Marks</th>
+                        <th class="px-4 py-2 border text-left">Test 2 Marks</th>
+                        <th class="px-4 py-2 border text-left">Test 3 Marks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for mark in marks %}
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-4 py-2 border">{{ mark[1] }}</td>
+                        <td class="px-4 py-2 border">{{ mark[2] }}</td>
+                        <td class="px-4 py-2 border">{{ mark[3] }}</td>
+                        <td class="px-4 py-2 border">{{ mark[4] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-900 text-white py-4 mt-6">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 SWATM. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
